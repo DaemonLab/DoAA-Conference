@@ -12,16 +12,18 @@ var sdkKey = 'gREfnZ6ZblFNBypg9KQrxw45jyiUS2r5MxmQ'
 var meetingNumber = 78912878100
 var role = 0
 var leaveUrl = 'http://localhost:5500/schedule.html'
-var userName = 'JavaScript'
+var userName = ''
 var userEmail = ''
 var passWord = ''
 var registrantToken = ''
 
-//T7JhQS
+//Use this password - T7JhQS
 function getSignature() {  
   var userInput = document.getElementById('inp').value;
-  console.log(userInput)
+  var username = document.getElementById('name').value;
+  console.log(userInput+" "+username)
   passWord = `${userInput}`
+  userName = `${username}`
   fetch(signatureEndpoint, {
     method: 'POST',
     headers: {
