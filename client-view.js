@@ -9,7 +9,7 @@ ZoomMtg.i18n.reload('en-US')
 
 var signatureEndpoint = 'http://localhost:4000'
 var sdkKey = 'gREfnZ6ZblFNBypg9KQrxw45jyiUS2r5MxmQ'
-var meetingNumber = 78912878100
+var meetingNumber = 0 //78912878100
 var role = 0
 var leaveUrl = 'http://localhost:5500/schedule.html'
 var userName = ''
@@ -19,11 +19,23 @@ var registrantToken = ''
 
 //Use this password - T7JhQS
 function getSignature() {  
-  var userInput = document.getElementById('inp').value;
+  var pwd = document.getElementById('inp').value;
   var username = document.getElementById('name').value;
-  console.log(userInput+" "+username)
-  passWord = `${userInput}`
-  userName = `${username}`
+  var mid = document.getElementById('Mid').value;
+
+  console.log(pwd+" "+username+" "+mid);
+  if(pwd == "" || mid == ""){    
+    console.log("err")
+    document.getElementById('err').innerHTML="<h5 align='center' style='color:red;'>Error</h5>"
+    return;
+  }
+  else{
+    console.log("no err")
+    document.getElementById('err').innerHTML="<h5>&nbsp;</h5>"
+  }
+  passWord = `${pwd}`;
+  userName = `${username}`;
+  meetingNumber = mid;
   fetch(signatureEndpoint, {
     method: 'POST',
     headers: {
